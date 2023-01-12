@@ -4,6 +4,12 @@ import { OrderEntity } from 'src/–flat/order/order.entity/order.entity'
 import { Entity, OneToOne, JoinColumn,Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
 
 
+
+export enum UserType{
+   consumer='consumer',
+   admin='admin'
+
+}
 @Entity()
 export class Users {
    @PrimaryGeneratedColumn()
@@ -13,10 +19,17 @@ export class Users {
    username: string
 
    @Column()
-   password: string
+   email: string
+
 
    @Column()
-   role: string
+   password: string
+
+   @Column({nullable: true})
+   role: UserType
+
+   @Column()
+   address: string
 
    @CreateDateColumn()
    createdAt : String
