@@ -13,9 +13,14 @@ export class AuthController {
        return this.usersService.signup(user);
    }
 
-   @UseGuards(AuthGuard('local'))
-   @Post('login')
+   //@UseGuards(AuthGuard('local'))
+   @Post('loginJWT')
    async login(@Request() req) {
        return this.usersService.login(req.user)
+   }
+   @Post('login')
+   async loginPassword(@Body() user) {
+    
+       return this.usersService.validateUser(user.username, user.password)
    }
 }
